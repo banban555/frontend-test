@@ -12,7 +12,6 @@ import styled from "styled-components";
 import api from "../api.js";
 import { SearchOutlined } from "@ant-design/icons";
 import StyledTimeTable from "../components/TimeTable.js";
-import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import StyledModal from "../components/common/Modal.js";
 
@@ -56,10 +55,9 @@ const Application = () => {
   const [keyword, setKeyword] = useState("");
   const [selectedData, setSelectedData] = useState("");
   const [addedData, setAddedData] = useState([]);
-  const [cookies, , removecookie] = useCookies(["x_auth"]);
   const [count, setCount] = useState();
   const [isOverCountModalVisible, setIsOverCountModalVisible] = useState(false); // 초과 학점 모달 visible 상태
-  const token = cookies?.x_auth;
+  const token = window.localStorage.getItem("token");
 
   //테이블 별로 클릭이벤트를 관리하기 위한 변수
   const [selectedRow, setSelectedRow] = useState({
@@ -134,7 +132,7 @@ const Application = () => {
 
   useEffect(() => {
     api
-      .get("/application/userInfo")
+      .get("/application/userInfo", { token: token })
       .then((response) => {
         if (response.data.success) {
           setUserInfo(response.data.data);
@@ -145,7 +143,7 @@ const Application = () => {
       .catch((error) => {
         console.error(error);
       });
-  }, []); // []은 의존성 배열입니다. 이 배열이 비어있으면 컴포넌트가 처음 마운트될 때 한 번만 실행됩니다.
+  }, []);
 
   // 플러스 버튼으로 강의를 add하는 클릭 이벤트 핸들러
   const handleAddButtonClick = () => {
@@ -252,8 +250,7 @@ const Application = () => {
 
   //로그아웃
   const handleLogout = () => {
-    // 로그아웃 버튼을 누르면 실행되는 함수
-    removecookie("x_auth"); // 쿠키삭제후
+    localStorage.removeItem("token");
     window.location.href = logoutURL; // 현재url을 변경해준다.
   };
   const handleCancelcheck = () => {

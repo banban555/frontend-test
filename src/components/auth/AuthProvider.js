@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 import React from "react";
 
 const AuthProvider = ({ children }) => {
-  const token = Cookies.get("x_auth");
+  const token = window.localStorage.getItem("token");
   const [isLoggedIn, setIsLoggedIn] = React.useState(!!token);
 
   return (

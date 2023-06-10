@@ -4,7 +4,6 @@ import styled from "styled-components";
 import theme from "../styles/theme";
 import StyledModal from "../components/common/Modal";
 import { useDrop } from "react-dnd";
-import { useCookies } from "react-cookie";
 import api from "../api.js";
 import "../css/TimeTable.css";
 
@@ -46,8 +45,7 @@ const StyledTimeTable = ({
   setCount,
 }) => {
   const transformedData = transformDataToEvents(dataSource);
-  const [cookies] = useCookies(["x_auth"]);
-  const token = cookies.x_auth;
+  const token = window.localStorage.getItem("token");
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isCheckModalVisible, setIsCheckModalVisible] = useState(false);
   const [isOverCountModalVisible, setIsOverCountModalVisible] = useState(false); // 초과 학점 모달 visible 상태
@@ -68,7 +66,7 @@ const StyledTimeTable = ({
 
   const [, drop] = useDrop(() => ({
     accept: "COURSE",
-    drop: async (item, monitor) => {
+    drop: async (item) => {
       const data = {
         userToken: token,
         lectureId: item.course._id,

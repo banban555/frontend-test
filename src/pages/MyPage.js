@@ -3,19 +3,17 @@ import { Layout, Button } from "antd";
 import api from "../api.js";
 import styles from "../css/MyPage.module.css";
 import axios from "axios";
-import { useCookies } from "react-cookie";
 import ModifyUserInfo from "../components/ModifyUserInfo.js";
 
 const { Header } = Layout;
 
 const MyPage = () => {
-  const [cookies, setcookie, removecookie] = useCookies(["x_auth"]);
-
   const [userInfo, setUserInfo] = useState(null);
+  const token = window.localStorage.getItem("token");
 
   useEffect(() => {
     api
-      .get("/application/userInfo")
+      .get("/application/userInfo", { token: token })
       .then((response) => {
         if (response.data.success) {
           setUserInfo(response.data.data);
@@ -32,8 +30,7 @@ const MyPage = () => {
 
   //로그아웃
   const handleLogout = () => {
-    // 로그아웃 버튼을 누르면 실행되는 함수
-    removecookie("x_auth"); // 쿠키삭제후
+    localStorage.removeItem("token");
     window.location.href = logoutURL; // 현재url을 변경해준다.
   };
 

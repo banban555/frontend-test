@@ -3,7 +3,6 @@ import { useDrop } from "react-dnd";
 import { Table } from "antd";
 import StyledModal from "../components/common/Modal";
 import axios from "axios";
-import { useCookies } from "react-cookie";
 import styles from "../css/Application.module.css";
 import classNames from "classnames";
 import styled from "styled-components";
@@ -27,8 +26,7 @@ const DroppableTable = ({
   selectedRow,
   setSelectedRow,
 }) => {
-  const [cookies] = useCookies(["x_auth"]);
-  const token = cookies.x_auth;
+  const token = window.localStorage.getItem("token");
 
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [isOverCountModalVisible, setIsOverCountModalVisible] = useState(false); // 초과 학점 모달 visible 상태

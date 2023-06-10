@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-import { useCookies } from "react-cookie";
-
 import styled from "styled-components";
-
 import { Input, PasswordInput } from "../components/common/Input";
 import Form from "../components/common/Form";
 import Logo from "../components/common/Logo";
@@ -31,8 +27,6 @@ const SignIn = () => {
           setModalVisible(true);
         }
         if (res.data.loginSuccess === true) {
-          console.log("로그인 성공");
-          console.log("토큰: ", res.data.token);
           window.localStorage.setItem("token", res.data.token);
           navigate("/application");
         }
