@@ -32,8 +32,7 @@ const SignIn = () => {
         }
         if (res.data.loginSuccess === true) {
           console.log("로그인 성공");
-          const [cookies] = useCookies(["x_auth"]);
-          console.log("토큰:", cookies.x_auth);
+          console.log("토큰: ", res.data.token);
           navigate("/application");
         }
       })
