@@ -24,7 +24,7 @@ const SignIn = () => {
       password: data.get("password"),
     };
     api
-      .post("/signin", userInfo)
+      .post("/signin", userInfo, { withCredentials: true })
       .then((res) => {
         if (res.data.loginSuccess === false) {
           setModalVisible(true);
