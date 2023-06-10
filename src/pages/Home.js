@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../components/auth/AuthContext";
 import React from "react";
+import api from "../api.js";
 
 const Home = () => {
   const { isLoggedIn } = React.useContext(AuthContext);

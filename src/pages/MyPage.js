@@ -1,6 +1,6 @@
 import { React, useEffect, useState } from "react";
 import { Layout, Button } from "antd";
-
+import api from "../api.js";
 import styles from "../css/MyPage.module.css";
 import axios from "axios";
 import { useCookies } from "react-cookie";
@@ -14,7 +14,7 @@ const MyPage = () => {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    axios
+    api
       .get("/application/userInfo")
       .then((response) => {
         if (response.data.success) {

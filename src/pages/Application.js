@@ -9,7 +9,7 @@ import CourseRow from "../components/CourseRow.js";
 import styles from "../css/Application.module.css";
 import theme from "../styles/theme.js";
 import styled from "styled-components";
-import axios from "axios";
+import api from "../api.js";
 import { SearchOutlined } from "@ant-design/icons";
 import StyledTimeTable from "../components/TimeTable.js";
 import { useCookies } from "react-cookie";
@@ -19,10 +19,6 @@ import StyledModal from "../components/common/Modal.js";
 const { Option } = Select;
 const { TabPane } = Tabs;
 const { Header, Content } = Layout;
-
-const api = axios.create({
-  baseURL: "https://port-0-backend-test-7xwyjq992llipki9am.sel4.cloudtype.app",
-});
 
 const CustomInput = styled(Input)`
   background-color: ${theme.colors.gray200} !important; // light gray

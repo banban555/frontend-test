@@ -10,10 +10,7 @@ import SelectInput from "../components/signup/Select";
 import Button from "../components/common/Button";
 import TextComponent from "../components/common/TextComponent";
 import StyledModal from "../components/common/Modal";
-
-const api = axios.create({
-  baseURL: "https://port-0-backend-test-7xwyjq992llipki9am.sel4.cloudtype.app",
-});
+import api from "../api.js";
 
 function SignUp() {
   const [userInfo, setUserInfo] = useState({

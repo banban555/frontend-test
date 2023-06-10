@@ -5,7 +5,7 @@ import theme from "../styles/theme";
 import StyledModal from "../components/common/Modal";
 import { useDrop } from "react-dnd";
 import { useCookies } from "react-cookie";
-import axios from "axios";
+import api from "../api.js";
 import "../css/TimeTable.css";
 
 const days = ["월", "화", "수", "목", "금"];
@@ -75,7 +75,7 @@ const StyledTimeTable = ({
       };
 
       try {
-        const res = await axios.post("/application/add", data);
+        const res = await api.post("/application/add", data);
 
         if (res.status === 200) {
           setIsCheckModalVisible(true);

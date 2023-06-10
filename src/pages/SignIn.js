@@ -10,10 +10,7 @@ import Logo from "../components/common/Logo";
 import StyledModal from "../components/common/Modal";
 import Button from "../components/common/Button";
 import TextComponent from "../components/common/TextComponent";
-
-const api = axios.create({
-  baseURL: "https://port-0-backend-test-7xwyjq992llipki9am.sel4.cloudtype.app",
-});
+import api from "../api.js";
 
 const SignIn = () => {
   const [modalVisible, setModalVisible] = useState(false);

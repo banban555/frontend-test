@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { Input } from "../components/common/Input";
 import SelectInput from "../components/signup/Select";
 import StyledModal from "../components/common/Modal.js";
-import axios from "axios";
+import api from "../api.js";
 
 const ModifyContainer = styled.div`
   margin: 10vh auto;
@@ -34,7 +34,7 @@ const ModifyButton = styled.button`
 
 const ModifyUserInfo = () => {
   useEffect(() => {
-    axios
+    api
       .get("/application/userInfo")
       .then((response) => {
         if (response.data.success) {
@@ -72,7 +72,7 @@ const ModifyUserInfo = () => {
       major: userInfo.major,
       grade: userInfo.grade,
     };
-    axios
+    api
       .put("/mypage/userInfo", userInfo)
       .then((res) => {})
       .catch((err) => {

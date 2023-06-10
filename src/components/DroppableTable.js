@@ -7,6 +7,7 @@ import { useCookies } from "react-cookie";
 import styles from "../css/Application.module.css";
 import classNames from "classnames";
 import styled from "styled-components";
+import api from "../api.js";
 
 const StyledDropTable = styled(Table)`
   .ant-table-row:hover,
@@ -42,7 +43,7 @@ const DroppableTable = ({
       };
 
       try {
-        const res = await axios.post("/application/add", data);
+        const res = await api.post("/application/add", data);
 
         if (res.status === 200) {
           setIsCheckModalVisible(true);
