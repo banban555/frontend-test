@@ -34,9 +34,7 @@ function SignUp() {
     setModalVisible(true);
     api
       .post("/signup", userInfo)
-      .then((res) => {
-        console.log("회원가입 완료");
-      })
+      .then((res) => {})
       .catch((err) => {
         console.error(err);
       });

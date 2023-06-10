@@ -98,7 +98,6 @@ const Application = () => {
     });
     setCount(response.data.count);
   };
-
   useEffect(() => {
     getCount();
   }, []);
@@ -132,7 +131,11 @@ const Application = () => {
 
   useEffect(() => {
     api
-      .get("/application/userInfo", { token: token })
+      .get("/application/userInfo", {
+        params: {
+          token: token,
+        },
+      })
       .then((response) => {
         if (response.data.success) {
           setUserInfo(response.data.data);
