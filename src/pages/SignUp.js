@@ -11,6 +11,10 @@ import Button from "../components/common/Button";
 import TextComponent from "../components/common/TextComponent";
 import StyledModal from "../components/common/Modal";
 
+const api = axios.create({
+  baseURL: "https://port-0-backend-test-7xwyjq992llipki9am.sel4.cloudtype.app",
+});
+
 function SignUp() {
   const [userInfo, setUserInfo] = useState({
     name: "",
@@ -31,9 +35,11 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setModalVisible(true);
-    axios
+    api
       .post("/signup", userInfo)
-      .then((res) => {})
+      .then((res) => {
+        console.log("회원가입 완료");
+      })
       .catch((err) => {
         console.error(err);
       });

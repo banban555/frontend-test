@@ -33,6 +33,7 @@ const SignIn = () => {
           setModalVisible(true);
         }
         if (res.data.loginSuccess === true) {
+          console.log("로그인 성공");
           navigate("/application");
         }
       })
