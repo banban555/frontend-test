@@ -11,6 +11,10 @@ import StyledModal from "../components/common/Modal";
 import Button from "../components/common/Button";
 import TextComponent from "../components/common/TextComponent";
 
+const api = axios.create({
+  baseURL: process.env.REACT_APP_API_BASE_URL,
+});
+
 const SignIn = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const navigate = useNavigate();
@@ -22,7 +26,7 @@ const SignIn = () => {
       studentNum: data.get("studentNum"),
       password: data.get("password"),
     };
-    axios
+    api
       .post("/signin", userInfo)
       .then((res) => {
         if (res.data.loginSuccess === false) {
