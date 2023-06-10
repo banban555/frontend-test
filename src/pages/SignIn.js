@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 
 import styled from "styled-components";
 
@@ -31,6 +32,8 @@ const SignIn = () => {
         }
         if (res.data.loginSuccess === true) {
           console.log("로그인 성공");
+          const [cookies] = useCookies(["x_auth"]);
+          console.log("토큰:", cookies.x_auth);
           navigate("/application");
         }
       })
