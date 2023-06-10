@@ -25,7 +25,7 @@ const SignIn = () => {
       password: data.get("password"),
     };
     api
-      .post("/signin", userInfo, { withCredentials: true }) // 추가)
+      .post("/signin", userInfo, { withCredentials: true })
       .then((res) => {
         if (res.data.loginSuccess === false) {
           setModalVisible(true);
@@ -33,6 +33,7 @@ const SignIn = () => {
         if (res.data.loginSuccess === true) {
           console.log("로그인 성공");
           console.log("토큰: ", res.data.token);
+          window.localStorage.setItem("token", res.data.token);
           navigate("/application");
         }
       })
