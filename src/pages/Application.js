@@ -20,6 +20,10 @@ const { Option } = Select;
 const { TabPane } = Tabs;
 const { Header, Content } = Layout;
 
+const api = axios.create({
+  baseURL: "https://port-0-backend-test-7xwyjq992llipki9am.sel4.cloudtype.app",
+});
+
 const CustomInput = styled(Input)`
   background-color: ${theme.colors.gray200} !important; // light gray
   border-color: ${theme.colors.gray200}!important;
@@ -93,7 +97,7 @@ const Application = () => {
   };
 
   const getCount = async () => {
-    const response = await axios.get("/application/count", {
+    const response = await api.get("/application/count", {
       params: {
         token: token,
       },
@@ -107,7 +111,7 @@ const Application = () => {
 
   const getSelectedCourses = async () => {
     try {
-      const res = await axios.get("/application/seclectedCourse", {
+      const res = await api.get("/application/seclectedCourse", {
         params: {
           token: token,
         },
@@ -133,7 +137,7 @@ const Application = () => {
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    axios
+    api
       .get("/application/userInfo")
       .then((response) => {
         if (response.data.success) {
@@ -153,7 +157,7 @@ const Application = () => {
       userToken: token,
       lectureId: selectedData._id,
     };
-    axios
+    api
       .post("/application/add", data)
       .then((res) => {
         if (res.status === 200) {
@@ -200,7 +204,7 @@ const Application = () => {
 
   // 마이너스 버튼 클릭 이벤트 핸들러
   const handleDelete = () => {
-    axios
+    api
       .delete("/application/delete", {
         data: {
           userToken: token,
@@ -220,7 +224,7 @@ const Application = () => {
   //서버에서 코스 가져오는 코드
   const getCourses = async (major = "", keyword = "") => {
     try {
-      const response = await axios.get(`/application/search`, {
+      const response = await api.get(`/application/search`, {
         params: {
           major,
           keyword,
