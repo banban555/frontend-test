@@ -31,10 +31,11 @@ const ModifyButton = styled.button`
   color: white;
   cursor: pointer;
 `;
-const [isModalVisible, setIsModalVisible] = useState(false); // 모달 visible state
-const [userInfo, setUserInfo] = useState(null);
+
 
 const ModifyUserInfo = () => {
+  const [isModalVisible, setIsModalVisible] = useState(false); // 모달 visible state
+const [userInfo, setUserInfo] = useState(null);
   useEffect(() => {
     api
       .get("/application/userInfo")
