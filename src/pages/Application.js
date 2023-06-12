@@ -29,7 +29,8 @@ const CustomInput = styled(Input)`
 `;
 
 const StyledDefaultTable = styled(AntTable)`
-  :where(.css-12jzuas).ant-table-wrapper.ant-table-tbody
+  :where(.css-12jzuas).ant-table-wrapper
+    .ant-table-tbody
     > tr
     > td.ant-table-cell-row-hover {
     background-color: #e79e2f !important;
