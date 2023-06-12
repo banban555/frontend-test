@@ -29,8 +29,7 @@ const CustomInput = styled(Input)`
 `;
 
 const StyledDefaultTable = styled(AntTable)`
-  :where(.css-12jzuas).ant-table-wrapper
-    .ant-table-tbody
+  :where(css-dev-only-do-not-override-12jzuas).ant-table-wrapper.ant-table-tbody
     > tr
     > td.ant-table-cell-row-hover {
     background-color: #e79e2f !important;
@@ -455,7 +454,11 @@ const Application = () => {
                     })}
                   />
                 </div>
-                <div className="container">
+                <div className="container"  style={{
+                    display: "flex",
+                    justifyContent: "center",
+                    alignContent: "center",
+                  }}>
                   <div className={styles.button_wrapper}>
                     <Button shape="circle" onClick={handleAddButtonClick}>
                       +
