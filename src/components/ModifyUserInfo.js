@@ -34,14 +34,6 @@ const ModifyButton = styled.button`
 
 
 const ModifyUserInfo = () => {
-  const [isModalVisible, setIsModalVisible] = useState(false); // 모달 visible state
-const [userInfo, setUserInfo] = useState({
-    name: "",
-    studentNum: "",
-    email: "",
-    major: "",
-    grade: "",
-  });
   useEffect(() => {
     api
       .get("/application/userInfo")
@@ -56,6 +48,14 @@ const [userInfo, setUserInfo] = useState({
         console.error(error);
       });
   }, []);
+  const [isModalVisible, setIsModalVisible] = useState(false); // 모달 visible state
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    studentNum: "",
+    email: "",
+    major: "",
+    grade: "",
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
