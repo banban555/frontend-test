@@ -212,19 +212,19 @@ const StyledTimeTable = ({
         isOpen={isModalVisible}
         onCancel={handleCancel}
         handleOk={handleOk}
-        message="이미 수강 신청된 강의입니다"
+        message="이미 신청된 강의입니다"
       />
       <StyledModal
         title="확인"
         isOpen={isCheckModalVisible}
         onCancel={handleCancelcheck}
         handleOk={handleOkcheck}
-        message={`수강신청이 완료되었습니다`}
+        message={`희망강의신청이 완료되었습니다`}
       />
       <StyledModal
         isOpen={isOverCountModalVisible}
         handleClose={handleOverCountModalCancel}
-        message="수강신청 가능한 학점을 초과하였습니다."
+        message="신청 가능한 학점을 초과하였습니다."
         handleOk={handleOverCountModalOk}
       />
     </>
