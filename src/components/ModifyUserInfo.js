@@ -4,7 +4,6 @@ import { Input } from "../components/common/Input";
 import SelectInput from "../components/signup/Select";
 import StyledModal from "../components/common/Modal.js";
 import api from "../api.js";
-const token = window.localStorage.getItem("token");
 
 const ModifyContainer = styled.div`
   margin: 10vh auto;
@@ -33,7 +32,6 @@ const ModifyButton = styled.button`
   cursor: pointer;
 `;
 
-
 const ModifyUserInfo = () => {
   const token = window.localStorage.getItem("token");
   const [userInfo, setUserInfo] = useState({
@@ -43,7 +41,7 @@ const ModifyUserInfo = () => {
     major: "",
     grade: "",
   });
- 
+
   useEffect(() => {
     api
       .get("/application/userInfo", {
@@ -63,7 +61,6 @@ const ModifyUserInfo = () => {
       });
   }, []);
   const [isModalVisible, setIsModalVisible] = useState(false); // 모달 visible state
-  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -72,7 +69,6 @@ const ModifyUserInfo = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // 서버로 회원정보 수정 요청 보내기
     const data = {
       name: userInfo.name,
       studentNum: userInfo.studentNum,
@@ -80,9 +76,13 @@ const ModifyUserInfo = () => {
       major: userInfo.major,
       grade: userInfo.grade,
     };
+    console.log("토큰", token);
 
     api
-      .put("/mypage/userInfo", data)
+      .put("/mypage/userInfo", {
+        token: token,
+        userData: data,
+      })
       .then((res) => {})
       .catch((err) => {
         console.error(err);
@@ -95,7 +95,6 @@ const ModifyUserInfo = () => {
   const handleOk = () => {
     setIsModalVisible(false);
     window.location.reload();
-    
   };
 
   return (
