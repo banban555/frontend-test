@@ -80,7 +80,7 @@ const ModifyUserInfo = () => {
       major: userInfo.major,
       grade: userInfo.grade,
     };
-    token.push(data);
+
     api
       .put("/mypage/userInfo", data)
       .then((res) => {})
