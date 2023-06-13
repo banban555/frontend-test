@@ -35,6 +35,13 @@ const ModifyButton = styled.button`
 
 const ModifyUserInfo = () => {
   const token = window.localStorage.getItem("token");
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    studentNum: "",
+    email: "",
+    major: "",
+    grade: "",
+  });
   useEffect(() => {
     api
       .get("/application/userInfo",{ params: { token: token } })
@@ -50,13 +57,6 @@ const ModifyUserInfo = () => {
       });
   }, []);
   const [isModalVisible, setIsModalVisible] = useState(false); // 모달 visible state
-  const [userInfo, setUserInfo] = useState({
-    name: "",
-    studentNum: "",
-    email: "",
-    major: "",
-    grade: "",
-  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -75,7 +75,7 @@ const ModifyUserInfo = () => {
       grade: userInfo.grade,
     };
     api
-      .put("/mypage/userInfo",{ params: { token: token } })
+      .put("/mypage/userInfo",userInfo)
       .then((res) => {})
       .catch((err) => {
         console.error(err);
