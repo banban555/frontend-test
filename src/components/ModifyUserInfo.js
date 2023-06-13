@@ -75,7 +75,7 @@ const ModifyUserInfo = () => {
       grade: userInfo.grade,
     };
     api
-      .put("/mypage/userInfo",userInfo)
+      .put("/mypage/userInfo",{ params: { token: token } })
       .then((res) => {})
       .catch((err) => {
         console.error(err);
