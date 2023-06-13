@@ -64,7 +64,7 @@ const ModifyUserInfo = () => {
   };
 
   const handleSubmit = (e) => {
-    e.preventDefault();
+  
 
     // 서버로 회원정보 수정 요청 보내기
     const data = {
