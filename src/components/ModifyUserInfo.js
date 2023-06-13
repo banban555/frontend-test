@@ -4,6 +4,7 @@ import { Input } from "../components/common/Input";
 import SelectInput from "../components/signup/Select";
 import StyledModal from "../components/common/Modal.js";
 import api from "../api.js";
+const token = window.localStorage.getItem("token");
 
 const ModifyContainer = styled.div`
   margin: 10vh auto;
@@ -45,7 +46,11 @@ const ModifyUserInfo = () => {
  
   useEffect(() => {
     api
-      .get("/application/userInfo", userInfo)
+      .get("/application/userInfo", {
+        params: {
+          token: token,
+        },
+      })
       .then((response) => {
         if (response.data.success) {
           setUserInfo(response.data.data);
@@ -76,7 +81,7 @@ const ModifyUserInfo = () => {
       grade: userInfo.grade,
     };
     api
-      .put("/mypage/userInfo", userInfo)
+      .put("/mypage/userInfo", token)
       .then((res) => {})
       .catch((err) => {
         console.error(err);
