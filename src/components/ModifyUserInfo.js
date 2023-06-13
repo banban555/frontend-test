@@ -75,7 +75,7 @@ const ModifyUserInfo = () => {
       grade: userInfo.grade,
     };
     api
-      .put("/mypage/userInfo",token)
+      .put("/mypage/userInfo", userInfo)
       .then((res) => {})
       .catch((err) => {
         console.error(err);
@@ -87,6 +87,7 @@ const ModifyUserInfo = () => {
   };
   const handleOk = () => {
     setIsModalVisible(false);
+    window.location.reload();
     
   };
 
