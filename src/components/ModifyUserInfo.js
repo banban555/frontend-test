@@ -76,7 +76,6 @@ const ModifyUserInfo = () => {
       major: userInfo.major,
       grade: userInfo.grade,
     };
-    console.log("토큰", token);
 
     api
       .put("/mypage/userInfo", {
