@@ -87,7 +87,7 @@ const ModifyUserInfo = () => {
   };
   const handleOk = () => {
     setIsModalVisible(false);
-    window.location.reload();
+    
   };
 
   return (
