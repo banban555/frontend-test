@@ -22,6 +22,7 @@ function SignUp() {
   });
 
   const [modalVisible, setModalVisible] = useState(false);
+  const [visible, setVisible] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -30,13 +31,29 @@ function SignUp() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setModalVisible(true);
     api
       .post("/signup", userInfo)
-      .then((res) => {})
+      .then((res) => {
+        if (res.status === 200) {
+          setModalVisible(true);
+        }
+      })
       .catch((err) => {
+        if (err.response) {
+          if (err.response.status === 400) {
+            setVisible(true);
+          }
+        }
         console.error(err);
       });
+  };
+
+  const closeModal = () => {
+    setVisible(false);
+  };
+
+  const errorHandleOk = () => {
+    setVisible(false);
   };
 
   const handleCloseModal = () => {
@@ -115,6 +132,12 @@ function SignUp() {
         handleClose={handleCloseModal}
         message="회원가입이 완료되었습니다."
         handleOk={handleOk}
+      />
+      <StyledModal
+        isOpen={visible}
+        handleClose={closeModal}
+        message="이미 가입된 사용자입니다."
+        handleOk={errorHandleOk}
       />
     </SignUpContainer>
   );
